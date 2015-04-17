@@ -1,0 +1,13 @@
+% $Id$
+\ProvidesDictionary{miunexam}{English}
+\providetranslation{Solution}{Suggested solution}
+\providetranslation{results}{results}
+\providetranslation{Results}{Results}
+\providetranslation{Keywords}{Keywords}
+\providetranslation{Bachelor's thesis}{Bachelor's thesis}
+\providetranslation{Master's thesis (magister)}{Master's thesis}
+\providetranslation{Master's thesis}{Master's thesis}
+\providetranslation{in}{in}
+\providetranslation{Project}{Project}
+\providetranslation{Phone}{Phone}
+\providetranslation{References}{References}

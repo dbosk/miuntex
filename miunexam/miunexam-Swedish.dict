@@ -1,0 +1,11 @@
+% $Id$
+\ProvidesDictionary{miunexam}{Swedish}
+\providetranslation{Final exam}{Tentamen}
+\providetranslation{Solution}{L{\"o}sningsf{\"o}rslag}
+\providetranslation{point}{po{\"a}ng}
+\providetranslation{points}{po{\"a}ng}
+\providetranslation{Point}{Po{\"a}ng}
+\providetranslation{Points}{Po{\"a}ng}
+\providetranslation{results}{resultat}
+\providetranslation{Results}{Resultat}
+\providetranslation{p}{p}

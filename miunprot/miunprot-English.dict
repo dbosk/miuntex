@@ -1,0 +1,22 @@
+% $Id$
+\ProvidesDictionary{miunprot}{English}
+\providetranslation{Attending}{Attending}
+\providetranslation{Absent}{Absent}
+\providetranslation{Chairman}{Chairman}
+\providetranslation{Writer}{Protocol writer}
+\providetranslation{Adjuster}{Protocol adjusting}
+\providetranslation{Protocol for the meeting on}
+	{Protocol for the meeting on}
+\providetranslation{Location}{Location}
+\providetranslation{Time}{Time}
+\providetranslation{until}{until}
+\providetranslation{Next meeting}{Next meeting}
+\providetranslation{The next meeting will be on}
+	{The next meeting will be on}
+\providetranslation{at (time)}{at}
+\providetranslation{in}{i}
+\providetranslation{other}{other}
+\providetranslation{Other}{Other}
+\providetranslation{Adjuncts}{Adjuncts}
+\providetranslation{The next chairman is}{The next chairman is}
+\providetranslation{The next writer is}{The next writer is}

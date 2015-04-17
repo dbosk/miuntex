@@ -1,0 +1,335 @@
+%\documentclass[svv]{miunexam}		% typeset the logo in black and white
+%\documentclass[nologo]{miunexam}	% skip the logo
+\documentclass[a4paper,addpoints]{miunexam}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+% the babel package takes as optional arguments which languages
+% we want to use in our document.  the last specified, in this case
+% swedish, will be the document default.
+\usepackage[english,swedish]{babel}
+\usepackage[hyphens]{url}
+\usepackage{hyperref}
+\usepackage{prettyref,varioref}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{prettyref,varioref}
+\usepackage[amssymb,noams,binary]{SIunits}
+\usepackage{subfigure}
+\usepackage{algpseudocode}
+\usepackage[plain]{algorithm}
+\usepackage[varioref,prettyref,listings,algorithm]{miunmisc}
+
+% some exam specific setup.
+\examtype{Final exam}
+\courseid{LT001A}
+\course{Writing exams in \LaTeX}
+\date{2011-10-21}
+\author{%
+	Lennart Franked\\
+  {\small\em E-post:} \texttt{\small lennart.franked@miun.se}\\
+	{\small\em Telefon: 060-14\,xxxx}
+	\and
+	Daniel Bosk\\
+  {\small\em E-post:} \texttt{\small daniel.bosk@miun.se}\\
+	{\small\em Telefon: 060-14\,8709}
+	\and
+	Ulf Jennehag\\
+  {\small\em E-post:} \texttt{\small ulf.jennehag@miun.se}\\
+	{\small\em Telefon: 060-14\,xxxx}
+	\and
+	Martin Kjellqvist\\
+  {\small\em E-post:} \texttt{\small martin.kjellqvist@miun.se}\\
+	{\small\em Telefon: 060-14\,xxxx}
+}
+
+% include answers in the resulting document.
+\printanswers
+
+% define some shorts for various units which might be useful.
+\newcommand{\bps}{\bit\per\second}											  
+\newcommand{\Bps}{\byte\per\second}
+\newcommand{\Kbps}{\kilo\bit\per\second}
+\newcommand{\Kibps}{\kibi\bit\per\second}
+\newcommand{\KBps}{\kilo\byte\per\second}
+\newcommand{\KiBps}{\kibi\byte\per\second}
+\newcommand{\Mbps}{\mega\bit\per\second}
+\newcommand{\Mibps}{\mebi\bit\per\second}
+\newcommand{\MBps}{\mega\byte\per\second}
+\newcommand{\MiBps}{\mebi\byte\per\second}
+
+
+% finally, the beginning of the document.
+\begin{document}
+% this sets the default style for listings to be code (this style is
+% specific to this class, not LaTeX-general), and the default language
+% is python.
+\lstset{style=code,language=python}
+
+% guess what?  this generates a title for the exam.
+\maketitle
+\thispagestyle{foot}
+
+% \section* is used to create unnumbered sections.  use \section
+% without the '*' to have a numbered section.
+\section*{Instructions}
+% label this section.  it is good custom to name labels specifying
+% a "type", in this case "sec" for section.  this is used by the
+% prettyref package as mentioned above.
+\label{sec:Instructions}
+\noindent
+Carefully read the questions before you start answering them.
+Note the time limit of the exam and plan your answers accordingly.
+Only answer the question, do not write about subjects remotely related to the
+question.
+
+Write your answers on separate sheets, not on the exam paper.
+Only write on one side of the sheets.
+Start each question on a new sheet.
+
+Make sure you write your answers clearly, if I cannot read an answer the answer
+will be awarded no points -- even if the answer is correct.
+The questions are \emph{not} sorted by difficulty.
+
+\begin{description}
+	\item[Time] 5 hours, no breaks.
+	\item[Aids] None.
+	\item[Maximum points] \numpoints
+	\item[Questions] \numquestions
+\end{description}
+
+\subsection*{Bonus points}
+\noindent
+There are no bonus points \dots
+
+\subsection*{Preliminary grades}
+\noindent
+The following grading criteria applies:
+E \(\geq 50\%\),
+D \(\geq 60\%\),
+C \(\geq 70\%\),
+B \(\geq 80\%\),
+A \(\geq 90\%\);
+with no question awarded zero points.
+
+
+\clearpage
+\section*{Questions}
+\label{sec:Questions}
+\noindent
+% the questions environment is a part of the exam class.  this
+% environment contains the questions of the exam, automatically
+% numbered from one (1).  i.e. for every new questions environment
+% the question number counter is reset, useful for exams split into
+% different parts.
+\begin{questions}
+	% \question specifies a new question.  the optional parameter is
+	% the number of points.
+	\question[4]\label{q:LearnLaTeX}
+	What is the best way to learn how to write exams in \LaTeX?
+	Select all that applies.
+	\begin{choices}
+		\choice To write the exams using Microsoft Word.
+		% use \CorrectChoice to mark an alternative as correct,
+		% that it is correct will only be shown when \printanswers
+		% is used in the preamble.
+		\CorrectChoice To study the source.
+		\CorrectChoice To read a text describing it.
+		\choice To generate it using the upcoming exam generation system.
+	\end{choices}
+
+	\question[2]\label{q:HelloPython}
+	What does the following Python\footnote{Python version 3.} program do?
+	% as we have set our default to be style=code and language=python, we
+	% do not have to specify either of them here.
+	\begin{source}
+print("Hello " + input("What is your name? ") + "!")
+	\end{source}
+
+	\begin{solution}
+		Running the program yields the following output:
+		% here we override the default style, setting the style to text will
+		% also set the language to none.
+		\begin{terminal}
+$ /usr/bin/python3.2
+Python 3.2.2 (default, Sep  5 2011, 21:17:14) 
+[GCC 4.6.1] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> print("Hello " + input("What is your name? ") + "!")
+What is your name? Daniel
+Hello Daniel!
+>>>
+$
+		\end{terminal}
+	\end{solution}
+
+	\question\label{q:Speed}
+	Answer the following questions in units of \Mbps.
+	\begin{parts}
+		\part[1] How fast a connection do you need to transfer a
+			\unit{1}{\giga\byte} file in less than \unit{30}{\second}.
+		\part[1] How fast a connection do you have if you can download
+			a \unit{1}{\gibi\byte} file in \unit{30}{\second}.
+	\end{parts}
+
+	\question[1]\label{q:WindowsVsUNIX}
+	Every time I boot my computer, I find that I lack some command.
+	What operating system am I using then?
+	\begin{oneparchoices}
+		\CorrectChoice Windows
+		\choice Linux
+		\choice BSD
+	\end{oneparchoices}
+
+	\question
+	Would you say that
+	\begin{parts}
+		\part[1] \prettyref{q:WindowsVsUNIX} is impartial?
+		\begin{solution}
+			No. There are things missing in the UNIX-like world as well, like the
+			Blue Screen of Death and the simplicity of having only one command
+			to solve all problems -- \code{format c:}.
+		\end{solution}
+
+		\part[1] \prettyref{q:LearnLaTeX} is impartial?
+		\begin{solution}
+			Yes, very.
+		\end{solution}
+	\end{parts}
+
+	\question[10]
+	Look at \prettyref{fig:Logos}.
+	Describe the differences between \prettyref{subfig:LogoColor} and
+	\prettyref{subfig:LogoBlackWhite} in exactly 2002 words, i.e. about five
+	(5) pages.
+
+	\begin{figure}[p]
+		\centering
+		% there is really no need for the \ifpdf in a usual document
+		% as you know whether you use the `latex` or `pdflatex` command
+		% to build the documents.
+		\ifpdf
+			\subfigure[][CMYK, PDF]{%
+				\label{subfig:LogoColor}
+				\includegraphics[height=2cm]{MU_logotyp_int_CMYK.pdf}
+			}
+			\subfigure[][sv, PDF]{%
+				\label{subfig:LogoBlackWhite}
+				\includegraphics[height=2cm]{MU_logotyp_int_sv.pdf}
+			}
+		\else
+			\subfigure[][CMYK, EPS]{%
+				\label{subfig:LogoColor}
+				\includegraphics[height=2cm]{MU_logotyp_int_CMYK.eps}
+			}
+			\subfigure[][sv, EPS]{%
+				\label{subfig:LogoBlackWhite}
+				\includegraphics[height=2cm]{MU_logotyp_int_sv.eps}
+			}
+		\fi
+		\caption{The university logotypes.}
+		\label{fig:Logos}
+	\end{figure}
+	
+	\begin{solution}
+		Should a student nail your exam, that is not a sign of how well the
+		student has done on the course but rather of how poorly you constructed
+		your exam.
+		To avoid such embarrassments this type of question is useful.
+	\end{solution}
+
+	\question[10]
+	Use \prettyref{tbl:Caesar} to encrypt \emph{all} of your answers in this
+	entire exam.
+
+	\begin{solution}
+		\begin{verbatim}
+			UKPEG VJKU KU CP CPUYGT VQ C SWGUVKQP, UJQWNF VJKU DG GPETARVGF
+			TGEWTUKXGNA?
+		\end{verbatim}
+	\end{solution}
+
+	\begin{table}[p]
+		\centering
+		\begin{tabular}{ccccccccccccccc}
+			\hline\hline
+			a & b & c & d & e & f & g & h & i & j & k & l & m & n & o \\
+			C & D & E & F & G & H & I & J & K & L & M & N & O & P & Q \\
+			\hline\hline
+			p & q & r & s & t & u & v & w & x & y & z & å & ä & ö \\
+			R & S & T & U & V & W & X & Y & Z & Å & Ä & Ö & A & B \\
+			\hline\hline
+		\end{tabular}
+		\caption{Table used for encryption and decryption in the Caesar cipher.}
+		\label{tbl:Caesar}
+	\end{table}
+
+	\question[2]
+	Prove whether there exists a solution to
+	\prettyref{eq:AnalyticalNumberTheory}.
+	\begin{equation}
+		\label{eq:AnalyticalNumberTheory}
+		\sum_{n=0}^\infty \left(
+			\begin{array}{ccc}
+				1 & 2 & 3 \\
+				4 & 5 & 6 \\
+				7 & 8 & 9
+			\end{array}\right)^{-1}n^{p-1} \equiv x \pmod{p},
+	\end{equation}
+	where \(p\) is a prime.
+	\begin{solution}
+		This is trivial.
+		Look it up in the course literature.
+	\end{solution}
+
+	\question[2]
+	Analyse \prettyref{alg:FailStudents}.
+	\begin{parts}
+		\part[1]
+		Reason about whether this is an algorithm or not.
+		\begin{solution}
+			After a not so heated discussion where all participants
+			immediately agreed, this is not an algorithm -- it does not
+			necessarily end, thus being disqualified as an algorithm.
+		\end{solution}
+
+		\part[1]
+		Improve it!
+		\begin{solution}
+			Allow at most three fails, now it qualifies as an algorithm.
+		\end{solution}
+	\end{parts}
+
+	\begin{algorithm}[p]
+		\begin{algorithmic}
+			\Require{some input}
+			\Ensure{some output}
+			\Statex
+
+      \While{Student has not passed}
+				\State Read hand-in
+				\If{Not sufficient}
+					Fail student
+				\Else
+					Pass student
+				\EndIf
+			\EndWhile
+		\end{algorithmic}
+		\caption{An algorithm for student assessment.}
+		\label{alg:FailStudents}
+	\end{algorithm}
+
+\end{questions}
+
+\vspace{2cm}
+If you are insensible to sarcasm, please know there has been a lot of it in
+this so called exam.
+\vspace{0.5cm}
+\begin{flushright}
+	\parbox{0.5\textwidth}{
+	Sincerely,\\
+	the authors.
+	}
+\end{flushright}
+
+\end{document}

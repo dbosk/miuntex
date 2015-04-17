@@ -1,0 +1,22 @@
+% $Id$
+\ProvidesDictionary{miunprot}{Swedish}
+\providetranslation{Attending}{N{\"a}rvarande}
+\providetranslation{Absent}{Fr{\aa}nvarande}
+\providetranslation{Chairman}{Ordf{\"o}rande}
+\providetranslation{Writer}{Sekreterare}
+\providetranslation{Adjuster}{Justeringsperson}
+\providetranslation{Protocol for the meeting on}
+	{Protokoll f{\"o}r m{\"o}tet den}
+\providetranslation{Location}{Plats}
+\providetranslation{Time}{Tid}
+\providetranslation{until}{till}
+\providetranslation{Next meeting}{N{\"a}sta m{\"o}te}
+\providetranslation{The next meeting will be on}
+	{N{\"a}sta m{\"o}te kommer att vara}
+\providetranslation{at (time)}{klockan}
+\providetranslation{in}{i}
+\providetranslation{other}{{\"o}vrigt}
+\providetranslation{Other}{{\"O}vrigt}
+\providetranslation{Adjuncts}{Adjungerade}
+\providetranslation{The next chairman is}{Nästa ordförande är}
+\providetranslation{The next writer is}{Nästa sekreterare är}

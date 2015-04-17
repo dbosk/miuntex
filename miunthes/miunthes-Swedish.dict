@@ -1,0 +1,16 @@
+% $Id$
+\ProvidesDictionary{miunexam}{Swedish}
+\providetranslation{Solution}{L{\"o}sningsf{\"o}rslag}
+\providetranslation{results}{resultat}
+\providetranslation{Results}{Resultat}
+\providetranslation{Keywords}{Nyckelord}
+\providetranslation{Bachelor's thesis}{Självständigt arbete p{\aa} 
+grundl{\"a}ggande niv{\aa}}
+\providetranslation{Master's thesis (magister)}{Självständigt arbete p{\aa} 
+magisterniv{\aa}}
+\providetranslation{Master's thesis}{Självständigt arbete p{\aa} avancerad 
+niv{\aa}}
+\providetranslation{in}{i ämnet}
+\providetranslation{Project}{Projekt}
+\providetranslation{Phone}{Telefon}
+\providetranslation{References}{Referenser}

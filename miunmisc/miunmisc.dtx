@@ -1,0 +1,904 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2012, Daniel Bosk <daniel.bosk@miun.se> and
+%                     Lennart Franked <lennart.franked@miun.se>
+%
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.2
+% of this license or (at your option) any later version.
+% The latest version of this license is in:
+%
+%    http://www.latex-project.org/lppl.txt
+%
+% and version 1.2 or later is part of all distributions of LaTeX
+% version 1999/12/01 or later.
+%
+% \fi
+%
+% \iffalse
+%<*driver>
+\ProvidesFile{miunmisc.dtx}
+%</driver>
+%<package>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+%<package>\ProvidesPackage{miunmisc}
+%<*package>
+    [2013/05/05 v1.7 Mid Sweden University Miscellaneous Package]
+%</package>
+%
+%<*driver>
+\documentclass[a4paper,twoside]{ltxdoc}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{prettyref,varioref}
+\usepackage{hyperref}
+\usepackage[prettyref,varioref]{miunmisc}
+\newenvironment{option}[1]{\expandafter\macro\expandafter{%
+   #1}}{\endmacro}
+\EnableCrossrefs
+\RecordChanges
+\begin{document}
+  \DocInput{miunmisc.dtx}
+  \PrintChanges
+\end{document}
+%</driver>
+% \fi
+%
+% \CheckSum{683}
+%
+% \CharacterTable
+%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%   Digits        \0\1\2\3\4\5\6\7\8\9
+%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%   Dollar        \$     Percent       \%     Ampersand     \&
+%   Acute accent  \'     Left paren    \(     Right paren   \)
+%   Asterisk      \*     Plus          \+     Comma         \,
+%   Minus         \-     Point         \.     Solidus       \/
+%   Colon         \:     Semicolon     \;     Less than     \<
+%   Equals        \=     Greater than  \>     Question mark \?
+%   Commercial at \@     Left bracket  \[     Backslash     \\
+%   Right bracket \]     Circumflex    \^     Underscore    \_
+%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%   Right brace   \}     Tilde         \~}
+%
+%
+% \changes{v1.4}{2012/12/31}{First documented version.}
+%
+% \GetFileInfo{miunmisc.dtx}
+%
+%
+% \title{The \textsf{miunmisc} package\thanks{This document
+%   corresponds to \textsf{miunmisc}~\fileversion, dated \filedate.}}
+% \author{Daniel Bosk\\\texttt{\small daniel.bosk@miun.se}}
+%
+% \maketitle
+% \tableofcontents
+%
+% \section{Introduction}
+% \label{sec:Introduction}
+% \noindent
+% The \textsf{miunmisc} package provides some default settings for various
+% packages, this solution is more general than to change these settings in
+% all |miun*| document classes.
+% This way the \textsf{miunmisc} settings can also be used with other classes
+% than the MiUn specific classes.
+%
+% The package was initially created by Daniel Bosk and Lennart Franked, but
+% also contains contributions from Martin Kjellqvist.
+%
+%
+% \section{Usage}
+% \label{sec:Usage}
+% \noindent
+% To use the \textsf{miunmisc} package, simply load the package using the
+% |\usepackage| command with the options which are applicable for the document
+% in question.
+% One thing to note is that \textsf{miunmisc} must be loaded \emph{last},
+% or at least after all packages which are to be set up by \textsf{miunmisc}.
+%
+%
+% \StopEventually{}
+%
+% \section{Implementation}
+% \label{sec:Implementation}
+% \noindent
+% The \textsf{miunmisc} package uses the \textsf{translator} package for
+% translations of section names and names of floats.
+% Currently, and probably forever, only English and Swedish are supported.
+%    \begin{macrocode}
+%<*package>
+\@ifpackageloaded{translator}{%
+  \PassOptionsToPackage{english,swedish}{translator}
+  \usedictionary{miunmisc}
+}{%
+  \RequirePackage[english,swedish]{translator}
+  \usedictionary{miunmisc}
+}
+%</package>
+%    \end{macrocode}
+% Hence, two dictionaries are provided, one with English and another with
+% Swedish translations.
+%    \begin{macrocode}
+%<*dicteng>
+\ProvidesDictionary{miunmisc}{English}
+%</dicteng>
+%<*dictswe>
+\ProvidesDictionary{miunmisc}{Swedish}
+%</dictswe>
+%    \end{macrocode}
+%
+% \textsf{miunmisc} uses options passed to it via the |\usepackage| command
+% in the preamble of the document.
+% When the package is loaded and the options parsed the specific settings are
+% loaded.
+%
+% \subsection{\textsf{varioref} and \textsf{prettyref}}
+% \label{sec:varioref}\label{sec:prettyref}
+% \noindent
+% Two packages which are extensively used are \textsf{varioref} and
+% \textsf{prettyref}.
+% \begin{option}{varioref}
+% The option |varioref| sets up the translation of all reference strings.
+% If the \textsf{babel} package is loaded we use its |\addto| command to be
+% able to correctly switch between languages.
+%    \begin{macrocode}
+%<*package>
+\DeclareOption{varioref}{%
+  \@ifpackageloaded{babel}{%
+    \addto{\extrasswedish}{%
+      \renewcommand{\reftextbefore}{\translate{textbefore}}%
+      \renewcommand{\reftextfacebefore}{\translate{textfacebefore}}%
+      \renewcommand{\reftextafter}{\translate{textafter}}%
+      \renewcommand{\reftextfaceafter}{\translate{textfaceafter}}%
+      \renewcommand{\reftextfaraway}[1]{\translate{textfaraway} \pageref{#1}}%
+    }
+    \addto{\extrasenglish}{%
+      \renewcommand{\reftextbefore}{\translate{textbefore}}%
+      \renewcommand{\reftextfacebefore}{\translate{textfacebefore}}%
+      \renewcommand{\reftextafter}{\translate{textafter}}%
+      \renewcommand{\reftextfaceafter}{\translate{textfaceafter}}%
+      \renewcommand{\reftextfaraway}[1]{\translate{textfaraway} \pageref{#1}}%
+    }
+  }{%
+    \renewcommand{\reftextbefore}{\translate{textbefore}}
+    \renewcommand{\reftextfacebefore}{\translate{textfacebefore}}
+    \renewcommand{\reftextafter}{\translate{textafter}}
+    \renewcommand{\reftextfaceafter}{\translate{textfaceafter}}
+    \renewcommand{\reftextfaraway}[1]{\translate{textfarway} \pageref{#1}}%
+  }
+}
+%</package>
+%    \end{macrocode}
+% \changes{v1.5}{28/3/2013}{Removed pageref due to bug.}
+% The translations used in this code are provided in each dictionary.
+%    \begin{macrocode}
+%<*dicteng>
+\providetranslation{textbefore}{on the previous page}
+\providetranslation{textfacebefore}{on the facing page}
+\providetranslation{textafter}{on the next page}
+\providetranslation{textfaceafter}{on the facing page}
+\providetranslation{textfaraway}{on page}
+%</dicteng>
+%<*dictswe>
+\providetranslation{textbefore}{p{\aa} f{\"o}reg{\aa}ende sida}
+\providetranslation{textfacebefore}{p{\aa} f{\"o}reg{\aa}ende sida}
+\providetranslation{textafter}{p{\aa} n{\"a}sta sida}
+\providetranslation{textfaceafter}{p{\aa} n{\"a}sta sida}
+\providetranslation{textfaraway}{p{\aa} sidan}
+%</dictswe>
+%    \end{macrocode}
+% \end{option}
+%
+% \begin{option}{prettyref}
+% The |prettyref| option does the same thing as |varioref|, except for the
+% \textsf{prettyref} package instead.
+% However, it uses the \textsf{varioref} package.
+% If the \textsf{varioref} package is not loaded, it uses the standard
+% |\ref| command.
+%    \begin{macrocode}
+%<*package>
+\DeclareOption{prettyref}{%
+  \@ifpackageloaded{varioref}{\relax}{%
+    \let\vref\ref
+  }
+%</package>
+%    \end{macrocode}
+% It also uses the |\eqref| command from the \textsf{amsmath} package if
+% loaded.
+% Otherwise, it defines its own version of the command.
+%    \begin{macrocode}
+%<*package>
+  \@ifpackageloaded{amsmath}{\relax}{%
+    \DeclareRobustCommand{\eqref}[1]{%
+      (\ref{#1})
+    }
+  }
+%</package>
+%    \end{macrocode}
+% As with the |varioref| option, the |prettyref| option uses \textsf{babel}
+% functionality if that package is loaded.
+%    \begin{macrocode}
+%<*package>
+  \@ifpackageloaded{babel}{%
+    \addto{\extrasswedish}{%
+      \newrefformat{prt}{\translate{part} \ref{#1}}%
+      \newrefformat{ch}{\translate{chapter} \ref{#1}}%
+      \newrefformat{sec}{\translate{section} \ref{#1}}%
+      \newrefformat{app}{\translate{appendix} \ref{#1}}%
+      \newrefformat{q}{\translate{question} \vref{#1}}%
+      \newrefformat{qp}{\translate{part} \ref{#1}}%
+      \newrefformat{xrc}{\translate{exercise} \vref{#1}}%
+      \newrefformat{eq}{\translate{equation} \eqref{#1}}%
+      \newrefformat{tab}{\translate{table} \vref{#1}}%
+      \newrefformat{tbl}{\translate{table} \vref{#1}}%
+      \newrefformat{fig}{\translate{figure} \vref{#1}}%
+      \newrefformat{alg}{\translate{algorithm} \vref{#1}}%
+      \newrefformat{lst}{\translate{listing} \vref{#1}}%
+      \newrefformat{ln}{\translate{line} \ref{#1}}%
+    }
+    \addto{\extrasenglish}{%
+      \newrefformat{prt}{\translate{Part} \ref{#1}}%
+      \newrefformat{ch}{\translate{Chapter} \ref{#1}}%
+      \newrefformat{sec}{\translate{Section} \ref{#1}}%
+      \newrefformat{app}{\translate{Appendix} \ref{#1}}%
+      \newrefformat{q}{\translate{question} \vref{#1}}%
+      \newrefformat{qp}{\translate{part} \ref{#1}}%
+      \newrefformat{xrc}{\translate{exercise} \vref{#1}}%
+      \newrefformat{eq}{\translate{equation} \eqref{#1}}%
+      \newrefformat{tab}{\translate{Table} \vref{#1}}%
+      \newrefformat{tbl}{\translate{Table} \vref{#1}}%
+      \newrefformat{fig}{\translate{Figure} \vref{#1}}%
+      \newrefformat{alg}{\translate{Algorithm} \vref{#1}}%
+      \newrefformat{lst}{\translate{Listing} \vref{#1}}%
+      \newrefformat{ln}{\translate{line} \ref{#1}}%
+    }
+  }{%
+    \newrefformat{prt}{\translate{Part} \ref{#1}}
+    \newrefformat{ch}{\translate{Chapter} \ref{#1}}
+    \newrefformat{sec}{\translate{Section} \ref{#1}}
+    \newrefformat{app}{\translate{Appendix} \ref{#1}}
+    \newrefformat{q}{\translate{question} \vref{#1}}
+    \newrefformat{qp}{\translate{part} \ref{#1}}
+    \newrefformat{xrc}{\translate{exercise} \vref{#1}}
+    \newrefformat{eq}{\translate{equation} \eqref{#1}}
+    \newrefformat{tab}{\translate{Table} \vref{#1}}
+    \newrefformat{tbl}{\translate{Table} \vref{#1}}
+    \newrefformat{fig}{\translate{Figure} \vref{#1}}
+    \newrefformat{alg}{\translate{Algorithm} \vref{#1}}
+    \newrefformat{lst}{\translate{Listing} \vref{#1}}
+    \newrefformat{ln}{\translate{line} \ref{#1}}
+  }
+}
+%</package>
+%    \end{macrocode}
+% The translations used herein are again provided in the dictionaries.
+%    \begin{macrocode}
+%<*dicteng>
+\providetranslation{Part}{Part}
+\providetranslation{part}{part}
+\providetranslation{Chapter}{Chapter}
+\providetranslation{chapter}{chapter}
+\providetranslation{Section}{Section}
+\providetranslation{section}{section}
+\providetranslation{Appendix}{Appendix}
+\providetranslation{appendix}{appendix}
+\providetranslation{Question}{Question}
+\providetranslation{question}{question}
+\providetranslation{Equation}{Equation}
+\providetranslation{equation}{equation}
+\providetranslation{Table}{Table}
+\providetranslation{table}{table}
+\providetranslation{Figure}{Figure}
+\providetranslation{figure}{figure}
+\providetranslation{Algorithm}{Algorithm}
+\providetranslation{algorithm}{algorithm}
+\providetranslation{Exercise}{Exercise}
+\providetranslation{exercise}{exercise}
+\providetranslation{unsrtnat}{unsrtnat}
+\providetranslation{Listing}{Listing}
+\providetranslation{listing}{listing}
+\providetranslation{Line}{Line}
+\providetranslation{line}{line}
+%</dicteng>
+%<*dictswe>
+\providetranslation{Part}{Del}
+\providetranslation{part}{del}
+\providetranslation{Chapter}{Kapitel}
+\providetranslation{chapter}{kapitel}
+\providetranslation{Section}{Avsnitt}
+\providetranslation{section}{avsnitt}
+\providetranslation{Appendix}{Bilaga}
+\providetranslation{appendix}{bilaga}
+\providetranslation{Question}{Fr{\aa}ga}
+\providetranslation{question}{fr{\aa}ga}
+\providetranslation{Equation}{Ekvation}
+\providetranslation{equation}{ekvation}
+\providetranslation{Table}{Tabell}
+\providetranslation{table}{tabell}
+\providetranslation{Figure}{Figur}
+\providetranslation{figure}{figur}
+\providetranslation{Algorithm}{Algoritm}
+\providetranslation{algorithm}{algoritm}
+\providetranslation{Exercise}{Uppgift}
+\providetranslation{exercise}{uppgift}
+\providetranslation{unsrtnat}{sweplnat}
+\providetranslation{Listing}{Listning}
+\providetranslation{listing}{listning}
+\providetranslation{Line}{Rad}
+\providetranslation{line}{rad}
+%</dictswe>
+%    \end{macrocode}
+% \end{option}
+%
+% \subsection{\textsf{listings}}
+% \label{sec:listings}
+% \noindent
+% \begin{option}{listings}
+% The |listings| option sets up, as the name suggests, the \textsf{listings}
+% package.
+% If the package \textsf{color} is loaded it defines some basic colours used
+% by the listings.
+%    \begin{macrocode}
+%<*package>
+\DeclareOption{listings}{%
+  \@ifpackageloaded{color}{%
+    \definecolor{termbkg}{gray}{0.90}%
+    \definecolor{textbkg}{gray}{0.97}%
+    \definecolor{commentcol}{rgb}{0,0.5,0}%
+  }{% color not loaded
+    \relax
+  }
+%</package>
+%    \end{macrocode}
+% The next thing this option does is to make sure the swedish letters å, ä and
+% ö works properly in code listings.
+%    \begin{macrocode}
+%<*package>
+  \lstset{literate=%
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Å}{{\AA}}1
+    {å}{{\aa}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
+  }
+%</package>
+%    \end{macrocode}
+% Next we set up the default listing style.
+% The text and line numbers should be typeset using small fonts.
+% We also want to show the spaces within strings, but not in the code.
+% Lines will be broken at whitespaces, not in the middle of words.
+% The caption should be at the bottom.
+%    \begin{macrocode}
+%<*package>
+  \lstset{%
+    basicstyle=\small,
+    numberstyle=\small,
+    numbers=left,
+    stepnumber=1,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=true,
+    showtabs=false,
+    frame=TB,
+    tabsize=2,
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=true,
+  }
+%</package>
+%    \end{macrocode}
+% When typesetting output from a terminal we do not want any syntax
+% highlighting.
+% To accomplish this we use a language consisting of no keywords, this language
+% is defined next.
+%    \begin{macrocode}
+%<*package>
+  \lstdefinelanguage{none}{
+    keywords={}
+  }
+%</package>
+%    \end{macrocode}
+%
+% We provide predefined styles for typesetting different types of listings.
+% One for terminal output, one for text files, and a last one for source code.
+% If the \textsf{color} package is loaded we use different background colors
+% for each of the styles.
+%    \begin{macrocode}
+%<*package>
+  \@ifpackageloaded{color}{
+    \lstdefinestyle{term}{
+      language=none,
+      numbers=left,
+      frame=single,
+      basicstyle=\ttfamily\small,
+      backgroundcolor=\color{termbkg},
+    }
+		\lstdefinestyle{conf}{
+      language=none,
+      numbers=none,
+      frame=single,
+      basicstyle=\ttfamily\small,
+      backgroundcolor=\color{textbkg},
+    }
+    \lstdefinestyle{text}{
+      language=none,
+      numbers=none,
+      frame=single,
+      basicstyle=\ttfamily\small,
+      backgroundcolor=\color{textbkg},
+    }
+    \lstdefinestyle{code}{
+      numbers=left,
+      frame=single,
+      basicstyle=\ttfamily\small,
+      backgroundcolor=\color{white},
+    }
+  }{
+    \lstdefinestyle{term}{
+      language=none,
+      numbers=left,
+      frame=single,
+      basicstyle=\ttfamily\small,
+    }
+		\lstdefinestyle{conf}{
+      language=none,
+      numbers=none,
+      frame=single,
+      basicstyle=\ttfamily\small,
+    }
+		\lstdefinestyle{text}{
+      language=none,
+      numbers=none,
+      frame=single,
+      basicstyle=\ttfamily\small,
+    }
+    \lstdefinestyle{code}{
+      numbers=left,
+      frame=single,
+      basicstyle=\ttfamily\small,
+    }
+  }
+%</package>
+%    \end{macrocode}
+% \changes{v1.5}{28/3/2013}{Use texttt instead of tt
+%   for compatibility with memoir.}
+% \changes{v1.5}{28/3/2013}{Added style listing style |conf|.}
+% The default listings style is set to plain text.
+%    \begin{macrocode}
+%<*package>
+  \lstset{style=text}
+%</package>
+%    \end{macrocode}
+%
+% Next we use these styles to create environments using them, to make inline
+% listings easier to handle.
+% \begin{environment}{src}
+% \begin{environment}{source}
+% The first is the |source| environment.
+% The environment |src| is just a shorthand for |source|.
+% You use them simply by issuing |\begin{source}|\oarg{lstlistings args} and
+% the corresponding |\end{source}| with all text between them read verbatim as
+% source code.
+%    \begin{macrocode}
+%<*package>
+  \lstnewenvironment{src}[1][]{%
+    \lstset{style=code,#1}
+  }{%
+    \lstset{style=text}
+  }
+  \lstnewenvironment{source}[1][]{%
+    \lstset{style=code,#1}
+  }{%
+    \lstset{style=text}
+  }
+%</package>
+%    \end{macrocode}
+% The optional arguments are the same as the optional arguments otherwise
+% passed to the |lstlistings| environment.
+% Typically optional arguments are used to specify a language or setting the
+% listing as a float.
+% \end{environment}
+% \end{environment}
+%
+% \begin{environment}{textfile}
+% \begin{environment}{config}
+% \changes{v1.5}{28/3/2013}{Added environment |config|.}
+% \begin{environment}{terminal}
+% The same applies to the final three environments, |textfile|, |config| and
+% |terminal|, with the exception that it is unlikely that one wish to specify
+% a language for these listings.
+%    \begin{macrocode}
+%<*package>
+  \lstnewenvironment{textfile}[1][]{%
+    \lstset{style=text,#1}
+  }{%
+    \lstset{style=text}
+  }
+	\lstnewenvironment{config}[1][]{%
+		\lstset{style=conf,#1}
+  }{%
+		\lstset{style=conf}
+  }
+  \lstnewenvironment{terminal}[1][]{%
+    \lstset{style=term,#1}
+  }{%
+    \lstset{style=text}
+  }
+%</package>
+%    \end{macrocode}
+% \end{environment}
+% \end{environment}
+% \end{environment}
+%
+% We also provide some shorter commands for inline writing.
+% \begin{macro}{\code}
+% \begin{macro}{\term}
+% First we have the command |\code|\oarg{lstlisting args}\marg{the code} which
+% will typeset code inline using the |\lstinline| command.
+%    \begin{macrocode}
+%<*package>
+  \newcommand{\code}[2][style=code]{\lstinline[#1]`#2`}
+%</package>
+%    \end{macrocode}
+% \changes{v1.6}{2013/04/10}{Added command term.}
+% Then we provide the command |\term|\oarg{lstlisting args}\marg{terminal
+% commands} which will typeset terminal commands.
+%    \begin{macrocode}
+%<*package>
+  \newcommand{\term}[2][style=term]{\lstinline[#1]`#2`}
+%</package>
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% Finally, we use translations for the names of the floats and the list of
+% listings.
+%    \begin{macrocode}
+%<*package>
+  \renewcommand{\lstlistlistingname}{\translate{Listings}}
+  \renewcommand{\lstlistingname}{\translate{Listing}}
+}
+%</package>
+%    \end{macrocode}
+% And then the actual dictionary entries.
+%    \begin{macrocode}
+%<*dicteng>
+\providetranslation{Listings}{Listings}
+\providetranslation{listings}{listings}
+%</dicteng>
+%<*dictswe>
+\providetranslation{Listings}{Listningar}
+\providetranslation{listings}{listningar}
+%</dictswe>
+%    \end{macrocode}
+% \end{option}
+%
+% \subsection{\textsf{natbib}}
+% \label{sec:natbib}
+% \noindent
+% \begin{option}{natbib}
+% The |natbib| option sets up the \textsf{natbib} pakage.
+% The current setup is to use the |unsrtnat| bibliography style, and if
+% \textsf{babel} is set to use Swedish we use the Swedish version, namely
+% |sweplnat|.
+%    \begin{macrocode}
+%<*package>
+\DeclareOption{natbib}{%
+  \@ifpackageloaded{babel}{%
+    \iflanguage{swedish}{%
+      \bibliographystyle{sweplnat}%
+    }{
+      \bibliographystyle{unsrtnat}%
+    }
+  }{%
+    \relax%
+  }
+%</package>
+%    \end{macrocode}
+% We also want to use a Vancouver-based citation style for references, i.e.
+% numbers with brackets.
+%    \begin{macrocode}
+%<*package>
+  \setcitestyle{numbers,square}
+}
+%</package>
+%    \end{macrocode}
+% Unfortunately, the IEEE and |alpha| bibliography styles are not supported by
+% \textsf{natbib}, these have to be rewritten to support exporting the author
+% name and the year of publication.
+% When this is done the IEEE will be the default set by \textsf{miunmisc}.
+% \end{option}
+%
+% \subsection{\textsf{algorithm}}
+% \changes{v1.7}{2013/05/05}{Adds check to see which algorithm packages
+% are loaded.}
+% \label{sec:algorithm}
+% \noindent
+% \begin{option}{algorithm}
+% The |algorithm| option sets up the packages \textsf{algorithm} and
+% \textsf{algpseudocode}.
+% What it first does is to make sure the pseudocode floats are typeset similar
+% to the standard floats, e.g. figures and tables.
+%    \begin{macrocode}
+%<*package>
+\DeclareOption{algorithm}{%
+  \ifx\ALG@floatstyle\undefined\relax\else
+    \renewcommand{\ALG@floatstyle}{plain}
+    \floatstyle{plain}
+    \restylefloat{algorithm}
+  \fi
+%</package>
+%    \end{macrocode}
+% What it does next is to load all translations.
+% As previously, if the \textsf{babel} package is loaded we use its |\addto|
+% functionality.
+% This allows us to write pretty Swedish pseudocode as well.
+%    \begin{macrocode}
+%<*package>
+  \@ifpackageloaded{babel}{%
+    \ifx\floatname\undefined\relax\else%
+      \addto{\extrasswedish}{\floatname{algorithm}{\translate{Algorithm}}}
+      \addto{\extrasenglish}{\floatname{algorithm}{\translate{Algorithm}}}
+    \fi
+    \@ifpackageloaded{algpseudocode}{%
+      \addto{\extrasswedish}{%
+        \algrenewcommand\algorithmicfunction{\textbf{\translate{function}}}%
+        \algrenewcommand\algorithmicprocedure{\textbf{\translate{procedure}}}%
+        \algrenewcommand\algorithmicwhile{\textbf{\translate{while}}}%
+        \algrenewcommand\algorithmicdo{\textbf{\translate{do}}}%
+        \algrenewcommand\algorithmicend{\textbf{\translate{end}}}%
+        \algrenewcommand\algorithmicforall{\textbf{\translate{for all}}}%
+        \algrenewcommand\algorithmicfor{\textbf{\translate{for}}}%
+        \algrenewcommand\algorithmicrepeat{\textbf{\translate{repeat}}}%
+        \algrenewcommand\algorithmicuntil{\textbf{\translate{until}}}%
+        \algrenewcommand\algorithmicloop{\textbf{\translate{loop}}}%
+        \algrenewcommand\algorithmicif{\textbf{\translate{if}}}%
+        \algrenewcommand\algorithmicthen{\textbf{\translate{then}}}%
+        \algrenewcommand\algorithmicelse{\textbf{\translate{else}}}%
+        \algrenewcommand\algorithmicrequire{\textbf{\translate{require}}}%
+        \algrenewcommand\algorithmicensure{\textbf{\translate{ensure}}}%
+        \algrenewcommand\algorithmicreturn{\textbf{\translate{return}}}%
+      }{\relax}
+      \addto{\extrasenglish}{%
+        \algrenewcommand\algorithmicfunction{\textbf{\translate{function}}}%
+        \algrenewcommand\algorithmicprocedure{\textbf{\translate{procedure}}}%
+        \algrenewcommand\algorithmicwhile{\textbf{\translate{while}}}%
+        \algrenewcommand\algorithmicdo{\textbf{\translate{do}}}%
+        \algrenewcommand\algorithmicend{\textbf{\translate{end}}}%
+        \algrenewcommand\algorithmicforall{\textbf{\translate{for all}}}%
+        \algrenewcommand\algorithmicfor{\textbf{\translate{for}}}%
+        \algrenewcommand\algorithmicrepeat{\textbf{\translate{repeat}}}%
+        \algrenewcommand\algorithmicuntil{\textbf{\translate{until}}}%
+        \algrenewcommand\algorithmicloop{\textbf{\translate{loop}}}%
+        \algrenewcommand\algorithmicif{\textbf{\translate{if}}}%
+        \algrenewcommand\algorithmicthen{\textbf{\translate{then}}}%
+        \algrenewcommand\algorithmicelse{\textbf{\translate{else}}}%
+        \algrenewcommand\algorithmicrequire{\textbf{\translate{require}}}%
+        \algrenewcommand\algorithmicensure{\textbf{\translate{ensure}}}%
+        \algrenewcommand\algorithmicreturn{\textbf{\translate{return}}}%
+      }{\relax}
+    }{\relax}
+  }{%
+    \@ifpackageloaded{algpseudocode}{%
+      \algrenewcommand\algorithmicfunction{\textbf{\translate{function}}}%
+      \algrenewcommand\algorithmicprocedure{\textbf{\translate{procedure}}}%
+      \algrenewcommand\algorithmicwhile{\textbf{\translate{while}}}%
+      \algrenewcommand\algorithmicdo{\textbf{\translate{do}}}%
+      \algrenewcommand\algorithmicend{\textbf{\translate{end}}}%
+      \algrenewcommand\algorithmicforall{\textbf{\translate{for all}}}%
+      \algrenewcommand\algorithmicfor{\textbf{\translate{for}}}%
+      \algrenewcommand\algorithmicrepeat{\textbf{\translate{repeat}}}%
+      \algrenewcommand\algorithmicuntil{\textbf{\translate{until}}}%
+      \algrenewcommand\algorithmicloop{\textbf{\translate{loop}}}%
+      \algrenewcommand\algorithmicif{\textbf{\translate{if}}}%
+      \algrenewcommand\algorithmicthen{\textbf{\translate{then}}}%
+      \algrenewcommand\algorithmicelse{\textbf{\translate{else}}}%
+      \algrenewcommand\algorithmicrequire{\textbf{\translate{require}}}%
+      \algrenewcommand\algorithmicensure{\textbf{\translate{ensure}}}%
+      \algrenewcommand\algorithmicreturn{\textbf{\translate{return}}}%
+    }{\relax}
+  }
+}
+%</package>
+%    \end{macrocode}
+% And then we provide the dictionary entries.
+%    \begin{macrocode}
+%<*dicteng>
+\providetranslation{function}{function}
+\providetranslation{procedure}{procedure}
+\providetranslation{while}{while}
+\providetranslation{do}{do}
+\providetranslation{end}{end}
+\providetranslation{for all}{for all}
+\providetranslation{for}{for}
+\providetranslation{repeat}{repeat}
+\providetranslation{until}{until}
+\providetranslation{loop}{loop}
+\providetranslation{if}{if}
+\providetranslation{then}{then}
+\providetranslation{else}{else}
+\providetranslation{require}{input}
+\providetranslation{ensure}{output}
+\providetranslation{return}{return}
+%</dicteng>
+%<*dictswe>
+\providetranslation{function}{funktion}
+\providetranslation{procedure}{procedur}
+\providetranslation{while}{medan}
+\providetranslation{do}{genomf{\"o}r}
+\providetranslation{end}{slut}
+\providetranslation{for all}{f{\"o}r alla}
+\providetranslation{for}{f{\"o}r}
+\providetranslation{repeat}{repetera}
+\providetranslation{until}{tills}
+\providetranslation{loop}{iterera}
+\providetranslation{if}{om}
+\providetranslation{then}{d{\aa}}
+\providetranslation{else}{annars}
+\providetranslation{require}{indata}
+\providetranslation{ensure}{utdata}
+\providetranslation{return}{returnera}
+%</dictswe>
+%    \end{macrocode}
+% \end{option}
+%
+% \subsection{\textsf{beamer}}
+% \changes{v1.7}{2013/05/05}{Added support for \textsf{beamer} package.}
+% \label{sec:beamer}
+% \noindent
+% \begin{option}{beamer}
+% The |beamer| option adds some features to the beamer document class.
+% It adds translations for some of beamer's blocks, e.g. |theorem| and
+% |example|.
+%    \begin{macrocode}
+%<*package>
+\DeclareOption{beamer}{%
+  \providetranslation[to=swedish]{Theorem}{Sats}
+  \providetranslation[to=swedish]{Corollary}{Korollarium}
+  \providetranslation[to=swedish]{Axiom}{Axiom}
+  \providetranslation[to=swedish]{Example}{Exempel}
+  \providetranslation[to=swedish]{Algorithm}{Algoritm}
+%</package>
+%    \end{macrocode}
+% It also adds the environments |axiom| and |algorithm| which does similar to
+% the |theorem| environment already in beamer.
+% Both these environments currently takes one mandatory argument which serves
+% as a title.
+%    \begin{macrocode}
+%<*package>
+  \newenvironment{axiom}[1]{\begin{block}{\translate{Axiom} (#1)}}{\end{block}}
+  \@ifpackageloaded{algorithm}{\relax}{%
+    \newenvironment{algorithm}[1]{\begin{block}{\translate{Algorithm} 
+      (#1)}}{\end{block}}
+  }
+}
+%</package>
+%    \end{macrocode}
+% \end{option}
+%
+% \subsection{\textsf{nomencl}}
+% \changes{v1.5}{28/3/2013}{Added support for \textsf{nomencl} package.}
+% \label{sec:nomencl}
+% \noindent
+% \begin{option}{nomencl}
+% The |nomencl| option changes some of the defaults for the \textsf{nomencl}
+% package.
+%    \begin{macrocode}
+%<*package>
+\DeclareOption{nomencl}{%
+  \renewcommand{\nomname}{\translate{Nomenclature}}
+  \renewcommand{\eqdeclaration}[1]{, \translate{see equation}\nobreakspace#1}
+  \renewcommand{\pagedeclaration}[1]{, \translate{see page}\nobreakspace#1}
+}
+%</package>
+%    \end{macrocode}
+% It also adds support for Swedish.
+%    \begin{macrocode}
+%<*dictswe>
+\providetranslation{Nomenclature}{Nomenklatur}
+\providetranslation{see equation}{se ekvation}
+\providetranslation{see page}{se sidan}
+%</dictswe>
+%    \end{macrocode}
+%    \begin{macrocode}
+%<*dicteng>
+\providetranslation{Nomenclature}{Nomenclature}
+\providetranslation{see equation}{see equation}
+\providetranslation{see page}{see page}
+%</dicteng>
+%    \end{macrocode}
+% \end{option}
+%
+% \subsection{Other options}
+% \noindent
+% \begin{option}{parskip}\label{sec:parskip}
+% The option |parskip| is the ''Lennart option''.
+% He once argued that paragraphs should be indicated by a small vertical space
+% skip instead of the first line of the paragraph being indented.
+% Of course, he is not wrong to argue this way, it is approved in standard
+% writing guides for Swedish.
+% However, from a typsetting perspective it is flawed.
+% Thus, with the manual for the \textsf{memoir} document class as a reference,
+% I hereby declare that \emph{use of this option is strongly discouraged!}
+%    \begin{macrocode}
+%<*package>
+\DeclareOption{parskip}{% The Lennart option, do not use! [texdoc memman]
+  \setlength{\parskip}{5pt}
+  \setlength{\parindent}{0pt}
+}
+%</package>
+%    \end{macrocode}
+% \end{option}
+%
+% \begin{option}{color}\label{sec:color}
+% The option |color| sets up the colours specified by the Mid Sweden University
+% graphical profile.
+%    \begin{macrocode}
+%<*package>
+\DeclareOption{color}{%
+  \definecolor{miunyellow}{cmyk}{0,0.10,1.0,0}
+  \definecolor{miunblue}{cmyk}{1.0,0.34,0,0.02}
+  \definecolor{miunblack}{cmyk}{0,0,0,1.0}
+  \definecolor{miungray}{cmyk}{0,0,0,0.11}
+  \definecolor{miundark}{cmyk}{0.11,0.01,0,0.69}
+  \definecolor{miunwhite}{cmyk}{0,0,0,0}
+}
+%</package>
+%    \end{macrocode}
+% \end{option}
+%
+% And finally, we have the options processed by the package.
+%    \begin{macrocode}
+%<*package>
+\ProcessOptions\relax
+%</package>
+%    \end{macrocode}
+%
+% \subsection{Licensing macros}
+% \changes{v1.5}{28/3/2013}{Added macros to easily release under CC BY-SA.}
+% \noindent
+% The \textsf{miunmisc} package also provides some useful macros.
+% Currently it adds macros to easily typeset various licenses.
+% Currently Creative Commons Attribution-ShareAlike in Swedish and English
+% are supported.
+%
+% \begin{macro}{\CCBYSA}
+% The |\CCBYSA| macro inserts a text saying that the work is licensed under
+% the Creative Commons Attribution-ShareAlike license.
+%    \begin{macrocode}
+%<*package>
+\DeclareRobustCommand{\CCBYSA}{%
+  \translate{This work is published under the}%
+  \translate{CC BY-SA}.
+}
+%</package>
+%    \end{macrocode}
+% It uses \textsf{babel} and \textsf{translator} to determine whether the
+% English or Swedish version of the license should be used.
+%    \begin{macrocode}
+%<*dicteng>
+\providetranslation{This work is published under the}{%
+  This work is published under the
+}
+\providetranslation{CC BY-SA}{%
+  Creative Commons Attribution-ShareAlike 3.0 Unported license, to view a copy 
+  of this license please visit 
+  \url{http://creativecommons.org/licenses/by-sa/3.0/}
+}
+%</dicteng>
+%<*dictswe>
+\providetranslation{This work is published under the}{%
+  Detta verk är publicerat under licensen
+}
+\providetranslation{CC BY-SA}{%
+  Creative Commons Erkännande-DelaLika 2.5 Sverige (CC BY-SA 2.5 SE), för att 
+  se en sammanfattning och fullständig kopia av licenstexten besök URL 
+  \url{http://creativecommons.org/licenses/by-sa/2.5/se/}
+}
+%</dictswe>
+%    \end{macrocode}
+% \end{macro}
+%
+% \Finale
+\endinput

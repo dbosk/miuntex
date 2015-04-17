@@ -1,0 +1,11 @@
+% $Id$
+\ProvidesDictionary{miunexam}{English}
+\providetranslation{Assignment}{Assignment}
+\providetranslation{Solution}{Suggested solution}
+\providetranslation{point}{point}
+\providetranslation{points}{points}
+\providetranslation{Point}{Point}
+\providetranslation{Points}{Points}
+\providetranslation{results}{results}
+\providetranslation{Results}{Results}
+\providetranslation{p}{p}
