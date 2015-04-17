@@ -1,5 +1,3 @@
-$Id$
-
 MIUN TeX
 ===============================================================================
 
@@ -49,7 +47,7 @@ INSTRUCTIONS FOR UNIX-LIKE SYSTEMS
 
 To install all of the packages, download all relevant tarballs from the 
 packages/ subdirectory to a directory of your chosing.  Then extract all 
-tarballs and run ``make install'' from each directory:
+tarballs and run ``make install`` from each directory:
 
 	$ wget http://ver.miun.se/latex/packages/miunmisc.tar.gz
 	[...]
@@ -84,8 +82,8 @@ in your user's home directory.
 DOCUMENTATION
 -------------------------------------------------------------------------------
 
-Currently, most packages and classes are ``documented'' using examples.  The 
-only documented package is miunmisc.  You can read its documentation as all 
-other TeX documentation, i.e. by issuing the command ``texdoc miunmisc'' (if 
+Currently, most packages and classes are "documented" using examples.  The only 
+documented package is ``miunmisc``.  You can read its documentation as all 
+other TeX documentation, i.e. by issuing the command ``texdoc miunmisc`` (if 
 using TeX Live).  This kind of documentation is slowly on its way for the rest 
 of the packages as well.
