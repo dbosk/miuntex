@@ -18,23 +18,27 @@ It is assumed that you already have a (La)TeX installation.  If not, go to URL
 
     https://www.tug.org/texlive/.
 
+You should also have Git [2] installed, see URL
+
+    https://git-scm.com/
+
 
 
 MIUN DOCUMENT CLASSES FOR LATEX
 -------------------------------------------------------------------------------
 
-To install the MiUn LaTeX classes and packages please download all the relevant 
-tarballs from packages/.  The packages and classes available are listed here:
+The following packages and document classes are available:
 
-    Makefile:    Used to install a set of classes or packages.
-    miunmisc:    Contains the logotypes and other basic files used by the
-                 classes and packages.  You will always need this one!
+    miunart:     A document class for typesetting all kinds of things, it's
+                 very much like the article class in LaTeX base.
+    miunasgn:    A document class for typesetting assignment instructions,
+                 e.g. labs.  It can also be used to typeset the hand-ins as
+                 the solution environment is pretty good for solutions.
     miunexam:    Contains the document class for typesetting exams.
+    miunmisc:    Contains the logotypes and other basic files used by the
+                 classes and packages.
     miunprot:    Contains the document class for typesetting meeting
                  protocols.
-    miunart:     A document class for typesetting all kinds of things, like
-                 the article class in LaTeX base.
-    miunasgn:    A document class for typesetting assignments, e.g. labs.
     miunthes:    A document class to typeset various theses according to
                  university regulation.
 
@@ -45,38 +49,24 @@ texlive-lang-swedish, and texlive-latex-extra.
 INSTRUCTIONS FOR UNIX-LIKE SYSTEMS
 -------------------------------------------------------------------------------
 
-To install all of the packages, download all relevant tarballs from the 
-packages/ subdirectory to a directory of your chosing.  Then extract all 
-tarballs and run ``make install`` from each directory:
+To install the MiUn LaTeX classes and packages please clone the git repo into 
+the texmf tree in your home directory.  I.e. do the following:
 
-	$ wget http://ver.miun.se/latex/packages/miunmisc.tar.gz
-	[...]
-	$ wget [...]
-	[...]
-    $ tar -zxf miunmisc.tar.gz
-	$ cd miunmisc && make install; cd ..
-	[...]
-    $ tar -zxf miunthes.tar.gz
-	$ cd miunthes && make install; cd ..
-	[...]
+    $ mkdir -p ~/texmf/tex/latex
+    $ cd ~/texmf/tex/latex
+    $ git clone https://github.com/dbosk/miuntex.git
 
-To install all of them, download the packages-all.tar.gz tarball.  Extract this 
-one, enter the directory, and finally run ``make install''.
+Now all the document classes and packages should be available to you.
 
 
 INSTRUCTIONS FOR WINDOWS
 -------------------------------------------------------------------------------
 
-If you are running Windows, install 7-Zip from
-
-    http://www.7-zip.org/
-
-to extract the tarballs, unless you already have a program which handles
-gzipped tar archives.  You can then extract them directly into
-
-    texmf\tex\latex\miun
-
-in your user's home directory.
+The instructions for Windows are similar to those for UNIX-like systems.  If 
+you use Git Bash, then they're exactly the same.  Otherwise, the main 
+difference is the slashes in the path ``texmf\tex\latex``.  Make sure those 
+directories exist in your home directory.  Then go into that directory and 
+clone the git repo in there.
 
 
 DOCUMENTATION
