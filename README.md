@@ -18,7 +18,7 @@ It is assumed that you already have a (La)TeX installation.  If not, go to URL
 
     https://www.tug.org/texlive/.
 
-You should also have Git [2] installed, see URL
+You should also have Git installed, see URL
 
     https://git-scm.com/
 
