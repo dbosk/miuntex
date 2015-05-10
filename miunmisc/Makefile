@@ -10,5 +10,6 @@ clean:
 	${RM} miunmisc.pdf miunmisc.ps miunmisc.sty
 	${RM} miunmisc-Swedish.dict miunmisc-English.dict
 
-.INCLUDE_DIRS+= ../makefiles
-include tex.mk
+
+INCLUDE_MAKEFILES=../makefiles
+include ${INCLUDE_MAKEFILES}/tex.mk
