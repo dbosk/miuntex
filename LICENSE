@@ -1,0 +1,42 @@
+Copyright 2012 Daniel Bosk and Lennart Franked
+Copyright 2013--2015 Daniel Bosk
+
+This work may be distributed and/or modified under the conditions of the LaTeX 
+Project Public License, either version 1.3 of this license or (at your option) 
+any later version. The latest version of this license is in
+
+  http://www.latex-project.org/lppl.txt
+
+and version 1.3 or later is part of all distributions of LaTeX
+version 2005/12/01 or later.
+
+This work has the LPPL maintenance status `unmaintained'.
+
+The Current Maintainer of this work is Daniel Bosk or Lennart Franked.
+
+This work consists of the files:
+
+./README.md
+./Makefile
+./miunasgn/Makefile
+./miunasgn/miunasgn.cls
+./miunasgn/miunasgn-Swedish.dict
+./miunasgn/miunasgn-English.dict
+./miunprot/Makefile
+./miunprot/miunprot.cls
+./miunprot/miunprot-English.dict
+./miunprot/miunprot-Swedish.dict
+./miunart/Makefile
+./miunart/miunart.cls
+./miunart/miunart-Swedish.dict
+./miunart/miunart-English.dict
+./miunthes/miunthes.cls
+./miunthes/miunthes-Swedish.dict
+./miunthes/miunthes-English.dict
+./miunexam/Makefile
+./miunexam/miunexam.cls
+./miunexam/miunexam-Swedish.dict
+./miunexam/miunexam-English.dict
+./miunmisc/Makefile
+./miunmisc/miunmisc.ins
+./miunmisc/miunmisc.dtx
