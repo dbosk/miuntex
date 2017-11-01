@@ -2,6 +2,8 @@
 # Author:	Daniel Bosk <daniel.bosk@miun.se>
 
 miunmisc.pdf: miunmisc.dtx
+miunmisc.pdf: miunmisc.sty
+
 miunmisc.sty miunmisc-Swedish.dict miunmisc-English.dict: miunmisc.ins
 miunmisc.sty miunmisc-Swedish.dict miunmisc-English.dict: miunmisc.dtx
 
