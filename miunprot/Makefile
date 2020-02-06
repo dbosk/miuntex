@@ -1,6 +1,15 @@
 # $Id$
+.PHONY: all
+all: miunprot.pdf
 
 miunprot.pdf: miunprot.tex miunmisc
+
+PKG_NAME=			miunprot
+PKG_INSTALL_FILES=	miunprot.sty miunprot-English.dict miunprot-Swedish.dict
+
+PKG_PREFIX= 		${HOME}
+PKG_INSTALL_DIR= 	/texmf/latex/miuntex/miunprot
+
 
 INCLUDE_MIUNTEX=../
 INCLUDE_MAKEFILES=../makefiles
