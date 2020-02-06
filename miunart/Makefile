@@ -8,7 +8,7 @@ PKG_NAME=			miunart
 PKG_INSTALL_FILES=	miunart.cls miunart-English.dict miunart-Swedish.dict
 
 PKG_PREFIX= 		${HOME}
-PKG_INSTALL_DIR= 	/texmf/latex/miuntex/miunart
+PKG_INSTALL_DIR= 	/texmf/tex/latex/miuntex/miunart
 
 
 INCLUDE_MIUNTEX=../

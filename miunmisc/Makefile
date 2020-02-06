@@ -15,7 +15,7 @@ PKG_INSTALL_FILES+= MU_logotyp_int_CMYK.eps MU_logotyp_int_CMYK.pdf
 PKG_INSTALL_FILES+= MU_logotyp_int_sv.eps MU_logotyp_int_sv.pdf
 
 PKG_PREFIX= 		${HOME}
-PKG_INSTALL_DIR= 	/texmf/latex/miuntex/miunmisc
+PKG_INSTALL_DIR= 	/texmf/tex/latex/miuntex/miunmisc
 
 
 .PHONY: clean

@@ -6,7 +6,7 @@ PKG_NAME=			miunthes
 PKG_INSTALL_FILES=	miunthes.cls miunthes-English.dict miunthes-Swedish.dict
 
 PKG_PREFIX= 		${HOME}
-PKG_INSTALL_DIR= 	/texmf/latex/miuntex/miunthes
+PKG_INSTALL_DIR= 	/texmf/tex/latex/miuntex/miunthes
 
 
 INCLUDE_MIUNTEX=../
