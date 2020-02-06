@@ -8,7 +8,7 @@ PKG_NAME=			miunexam
 PKG_INSTALL_FILES=	miunexam.cls miunexam-English.dict miunexam-Swedish.dict
 
 PKG_PREFIX= 		${HOME}
-PKG_INSTALL_DIR= 	/texmf/latex/miuntex/miunexam
+PKG_INSTALL_DIR= 	/texmf/tex/latex/miuntex/miunexam
 
 
 INCLUDE_MIUNTEX=../

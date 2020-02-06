@@ -9,7 +9,7 @@ PKG_NAME=			miunasgn
 PKG_INSTALL_FILES=	miunasgn.cls miunasgn-English.dict miunasgn-Swedish.dict
 
 PKG_PREFIX= 		${HOME}
-PKG_INSTALL_DIR= 	/texmf/latex/miuntex/miunasgn
+PKG_INSTALL_DIR= 	/texmf/tex/latex/miuntex/miunasgn
 
 
 INCLUDE_MIUNTEX=../
