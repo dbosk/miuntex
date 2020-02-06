@@ -1,5 +1,8 @@
 # $Id$
 # Author:	Daniel Bosk <daniel.bosk@miun.se>
+
+LATEX= 	latex
+
 .PHONY: all
 all: miunmisc.pdf miunmisc.sty
 
@@ -22,6 +25,7 @@ PKG_INSTALL_DIR= 	/texmf/tex/latex/miuntex/miunmisc
 clean:
 	${RM} miunmisc.pdf miunmisc.ps miunmisc.sty
 	${RM} miunmisc-Swedish.dict miunmisc-English.dict
+	${RM} miunmisc.aux miunmisc.fdb_latexmk miunmisc.fls miunmisc.log
 
 
 INCLUDE_MAKEFILES=../makefiles
