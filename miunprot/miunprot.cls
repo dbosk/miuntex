@@ -73,7 +73,7 @@
 \LoadClass{article}
 % XXX fix this dependency of geometry, as this will not allow the user to
 % XXX change it.
-\RequirePackage[margin=3.5cm]{geometry}
+%\RequirePackage[margin=3.5cm]{geometry}
 % commands.  maintain compatibility with protocol class.
 \newcommand{\@miunprot@groupname}{%
 	\ClassError{miunprot}{`\noexpand\groupname' must be set}
@@ -271,17 +271,17 @@
 \newcommand{\@miunprot@signatures}{%
 	\vspace{2cm}\par\noindent
 	\hrulefill\hrulefill\hfill\hrulefill\hrulefill\\
-	\@miunprot@chairman
+  \@miunprot@writer
 	\hfill
 	\ifx\@miunprot@adjuster\@undefined
-		\@miunprot@writer
+    \@miunprot@chairperson
 	\else
 		\@miunprot@adjuster
 	\fi\\
-	(\translate{Chairman})
+  (\translate{Writer})
 	\hfill
 	\ifx\@miunprot@adjuster\@undefined
-		(\translate{Writer})
+    (\translate{Chairperson})
 	\else
 		(\translate{Adjuster})
 	\fi\\
